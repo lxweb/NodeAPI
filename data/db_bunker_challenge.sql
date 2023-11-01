@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `company`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `company` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL UNIQUE,
   `country` enum('UY','BR','AR') NOT NULL DEFAULT 'UY',
   `cant_employees` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
