@@ -1,9 +1,13 @@
 import { Sequelize } from 'sequelize'
+import {development} from '../config/config.json';
 
-const sequelize = new Sequelize( 'bunker' , 'root', 'bunker', {
-    host: 'localhost',
+const sequelize = new Sequelize( 
+  development.database, 
+  development.username, 
+  development.password, {
+    host: development.host,
     dialect: 'mysql',
-    port: 3306
+    port: development.port || 3306
 })
 
 const testConnection = async ()=>{
