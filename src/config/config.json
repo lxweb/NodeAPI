@@ -1,0 +1,13 @@
+{
+    "development": {
+      "username": "root",
+      "password": "bunker",
+      "database": "bunker",
+      "host": "localhost",
+      "port": 3306,
+      "dialect": "mysql",
+      "dialectOptions": {
+        "bigNumberStrings": true
+      }
+    }
+}
