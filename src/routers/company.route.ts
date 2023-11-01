@@ -1,11 +1,13 @@
 // libs
 import express from "express"
 
+import CompanyModel from "../models/company.model"
+
 const router = express.Router()
 
-router.get('/', (_, res) => {
-    // console.log(req, res)
-    res.send('company')
+router.get('/', async (_, res) => {
+    const allCompanies = await CompanyModel.findAll()
+    res.send(allCompanies)
 })
 
 export default router
