@@ -1,9 +1,13 @@
 import { Sequelize } from 'sequelize'
+import { development } from '../config/config.json'
 
-const Connection = new Sequelize( 'bunker' , 'root', 'bunker', {
-    host: 'localhost',
-    dialect: 'mysql',
-    port: 3306
-})
+const Connection = new Sequelize( 
+    development.database , 
+    development.username, 
+    development.password, {
+        host: development.host,
+        dialect: 'mysql',
+        port: development.port}
+    )
 
 export default Connection;
