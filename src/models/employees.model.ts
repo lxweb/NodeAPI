@@ -1,14 +1,8 @@
-import { Sequelize, Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-const sequelize = new Sequelize( 'bunker' , 'root', 'bunker', {
-    host: 'localhost',
-    dialect: 'mysql',
-    port: 3306
-})
+import Connection from './connection'
 
-class Employees extends Model{}
-
-Employees.init({
+const Employees = Connection.define('employees',{
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -17,7 +11,8 @@ Employees.init({
   },
   company_name:{
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   document_number: {
     type: DataTypes.INTEGER,
@@ -36,11 +31,11 @@ Employees.init({
     allowNull: false
   }
 }, {
-  sequelize,
   modelName: 'employees',
   freezeTableName:true,
   timestamps: false
 })
+
 
 export default Employees
 

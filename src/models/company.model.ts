@@ -1,14 +1,8 @@
-import { Sequelize, Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-const sequelize = new Sequelize( 'bunker' , 'root', 'bunker', {
-    host: 'localhost',
-    dialect: 'mysql',
-    port: 3306
-})
+import Connection from './connection'
 
-class Company extends Model{}
-
-Company.init({
+const Company = Connection.define('company',{
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -17,7 +11,8 @@ Company.init({
   },
   name:{
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   country: {
     type: DataTypes.ENUM,
@@ -30,7 +25,6 @@ Company.init({
     allowNull: true
   }
 }, {
-  sequelize,
   modelName: 'company',
   freezeTableName:true,
   timestamps: false
