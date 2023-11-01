@@ -1,13 +1,6 @@
-import express from 'express'
+import app from './app/app'
 
-const PORT = 3000
-
-const app = express()
-app.use(express.json())
-
-app.get('/ping', (_, res) => {
-    res.send('pong')
-})
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
