@@ -22,7 +22,7 @@ const getAllCompaniesWithEmployees =  async (_:Request, res:Response): Promise<v
 
 /**
  * 
- * @param _ Unused param representing request
+ * @param req Request Object
  * @param res Response Object 
  */
 const getCompanyWithEmployeesByName = async (req:Request, res:Response) => {
@@ -37,12 +37,36 @@ const getCompanyWithEmployeesByName = async (req:Request, res:Response) => {
           })
         res.status(200).send(company)
     }catch(error){
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching data.' });
+        console.error(error)
+        res.status(500).json({ error: 'An error occurred while fetching data.' })
     }
+}
+
+/**
+ * 
+ * @param req Request Object
+ * @param res Response Object 
+ */
+const createCompany = async (req:Request, res:Response) => {
+    try {
+        const { name, country, cant_employees} = req.body;
+    
+        // Use Sequelize to create a new company
+        const newCompany = await Models.Company.create({
+          name,
+          country,
+          cant_employees
+        });
+    
+        res.status(201).json(newCompany);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while creating the company.' });
+      }
 }
 
 export {
     getAllCompaniesWithEmployees,
-    getCompanyWithEmployeesByName
+    getCompanyWithEmployeesByName,
+    createCompany
 }
