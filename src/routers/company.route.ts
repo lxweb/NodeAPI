@@ -1,13 +1,14 @@
 // libs
 import express from "express"
-import Models from '../models'
+
+import { 
+    getAllCompaniesWithEmployees, 
+    getCompanyWithEmployeesByName
+} from '../controllers/company.controller'
+
 const router = express.Router()
 
-router.get('/', async (_, res) => {
-    const allCompanies = await Models.Company.findAll({
-        include: 'employees',
-      })
-    res.status(200).send(allCompanies)
-})
+router.get('/', getAllCompaniesWithEmployees)
+router.get('/:name', getCompanyWithEmployeesByName)
 
 export default router
